@@ -51,12 +51,15 @@ async function getSqliteDb() {
 
     if (!global.cache[_dbpath]) {
 
-        if (await (checkDbfile(_dbpath))){
+        if (await checkDbfile(_dbpath)){
             global.cache[_dbpath] = new _sqlite3.Database(_dbpath);
+        }
+        else {
+            throw new Error("can`t find" + _dbpath);
         }
     }
 
     return global.cache[_dbpath];
 }
 
-module.exports = getSqliteDb()
+module.exports = getSqliteDb();
