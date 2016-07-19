@@ -1,0 +1,38 @@
+{
+  "name": "spider_promise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf ./lib && babel ./src -d ./lib",
+    "start": "npm run build && node index.js"
+  },
+  "keywords": [
+    "promise",
+    "spider"
+  ],
+  "author": "xia_mingxing@163.com",
+  "license": "MIT",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "chalk": "^1.1.3",
+    "cheerio": "^0.20.0",
+    "crawler": "^0.4.3",
+    "later": "^1.2.0",
+    "lodash": "^4.13.1",
+    "moment": "^2.14.1",
+    "promise": "^7.1.1",
+    "request": "latest",
+    "shelljs": "^0.7.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0"
+  }
+}

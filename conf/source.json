@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "name": "",
+  "tasks": [
+    {
+      "key": "baidu",
+      "url": "https://www.baidu.com/",
+      "filter": {
+        "orgin": "title",
+        "target": "baidu"
+      },
+      "freq": ""
+    },
+    {
+      "key": "google",
+      "url": "https://www.google.com/",
+      "filter": {
+        "orgin": "title",
+        "target": "google"
+      },
+      "freq": ""
+    },
+    {
+      "key": "daohang",
+      "url": "https://hao.360.cn/",
+      "filter": {
+        "orgin": "title",
+        "target": "daohang"
+      },
+      "freq": ""
+    },
+    {
+      "key": "so",
+      "url": "https://www.so.com/",
+      "filter": {
+        "orgin": "title",
+        "target": "so"
+      },
+      "freq": ""
+    }
+  ]
+}

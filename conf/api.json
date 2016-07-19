@@ -1,0 +1,5 @@
+{
+  "getUserInfo": "http://demos.so/result/homework.promise.userInfo",
+  "getPublicPostByUserid": "http://demos.so/result/userid={userid}",
+  "getStudyPostByUserid": "http://demos.so/result/student={userid}"
+}
