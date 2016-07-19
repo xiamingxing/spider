@@ -20,7 +20,9 @@ import apiConfig from "../conf/api"
 function start(){
     // new SpiderPromise(config).runTasks();
     // new ApiPromise(apiConfig).runTasks();
-    SqliteDb
+    SqliteDb.run(`show tables;`, function () {
+        console.log(arguments);
+    })
 }
 
 start();

@@ -46,18 +46,17 @@ function checkDbfile(filepath) {
  * @returns {*}
  */
 async function getSqliteDb() {
-    let _sqlite3 = config.debug ? sqlite3.verbose() : sqlite3;
+    let _sqlite3 = config.debug ? sqlite3.verbose() : sqlite3,
+        _dbpath = path.resolve(config.path);
 
-    config.path = path.resolve(config.path);
+    if (!global.cache[_dbpath]) {
 
-    if (!global.cache[config.path]) {
-
-        if (await (checkDbfile(config.path))){
-            global.cache[config.path] = new _sqlite3.Database(config.path);
+        if (await (checkDbfile(_dbpath))){
+            global.cache[_dbpath] = new _sqlite3.Database(_dbpath);
         }
     }
 
-    return global.cache[config.path];
+    return global.cache[_dbpath];
 }
 
 module.exports = getSqliteDb()
