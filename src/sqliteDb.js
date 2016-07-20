@@ -8,10 +8,8 @@ import Promise from "promise";
 
 import sqlite3 from "sqlite3";
 
-import config from "../conf/db";
-
 /**
- * 
+ *
  * @type {*}
  */
 global.cache = Object.assign({}, global.cache);
@@ -32,7 +30,7 @@ function checkDbfile(filepath) {
                     if (err) {
                         reject(err);
                     }
-                    else{
+                    else {
                         resolve(filepath);
                     }
                 });
@@ -43,23 +41,36 @@ function checkDbfile(filepath) {
 
 /**
  *
+ * @param sqliteDb
+ * @param statement
+ */
+async function createTable(sqliteDb, statement) {
+    await sqliteDb.run(statement);
+}
+
+/**
+ *
+ * @param config
  * @returns {*}
  */
-async function getSqliteDb() {
-    let _sqlite3 = config.debug ? sqlite3.verbose() : sqlite3,
-        _dbpath = path.resolve(config.path);
+async function getSqliteDb(config) {
+    let sqlite3Cls = config.debug ? sqlite3.verbose() : sqlite3,
+        dbpath = path.resolve(config.dbPath),
+        sqliteDb = global.cache[dbpath];
 
-    if (!global.cache[_dbpath]) {
+    if (!sqliteDb) {
 
-        if (await checkDbfile(_dbpath)){
-            global.cache[_dbpath] = new _sqlite3.Database(_dbpath);
+        if (await checkDbfile(dbpath)) {
+            sqliteDb = new sqlite3Cls.Database(dbpath);
         }
         else {
-            throw new Error("can`t find" + _dbpath);
+            throw new Error("can`t find" + dbpath);
         }
     }
 
-    return global.cache[_dbpath];
+    await createTable(sqliteDb, config.tableStatement);
+
+    return global.cache[dbpath] = sqliteDb;
 }
 
-module.exports = getSqliteDb();
+module.exports = {getSqliteDb};

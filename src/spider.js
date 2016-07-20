@@ -23,12 +23,6 @@ import {successLog, warnLog} from "./log";
 const dataPath = path.resolve(path.dirname(__dirname), "data");
 
 /**
- * 日志存储路径
- * @type {string}
- */
-const logPath = path.resolve(path.dirname(__dirname), "log");
-
-/**
  *
  * @param url
  * @returns {*}
@@ -53,7 +47,7 @@ function crawleWebpage(url) {
  * @returns {*}
  */
 function convertWebpage(content, filter) {
-    let $ = cheerio.load(content);
+    let $ = cheerio.load(content, {decodeEntities: false});
     $(filter.orgin).text(filter.target);
     return $.html();
 }
@@ -91,7 +85,7 @@ function generateLocalPath(key) {
  * @returns {*}
  */
 function generateLogPath() {
-    return path.join(logPath, new Date().getFullYear() + ".json");
+    return path.join(dataPath, new Date().getFullYear() + ".json");
 }
 
 

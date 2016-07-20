@@ -1,3 +1,6 @@
-'use strict';
+"use strict";
 
-module.exports = require('./lib/index.js');
+require("babel-core/register");
+require("babel-polyfill");
+
+module.exports = require("./lib/index.js");
