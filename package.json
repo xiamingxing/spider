@@ -48,8 +48,8 @@
   "config": {
     "pre-git": {
       "commit-msg": "simple",
-      "pre-commit": ["npm run eslint"],
-      "pre-push": ["git difftool"],
+      "pre-commit": ["npm run eslint", "git difftool"],
+      "pre-push": [],
       "post-commit": [],
       "post-checkout": [],
       "post-merge": []
