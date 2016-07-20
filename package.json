@@ -49,7 +49,7 @@
     "pre-git": {
       "commit-msg": "simple",
       "pre-commit": ["npm run eslint"],
-      "pre-push": [],
+      "pre-push": ["git difftool"],
       "post-commit": [],
       "post-checkout": [],
       "post-merge": []
