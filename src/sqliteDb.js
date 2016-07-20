@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 import fs from "fs";
 
@@ -8,7 +8,7 @@ import Promise from "promise";
 
 import sqlite3 from "sqlite3";
 
-import config from "../conf/db"
+import config from "../conf/db";
 
 /**
  * 

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 import path from "path";
 
@@ -8,13 +8,13 @@ import chalk from "chalk";
 
 import moment from "moment";
 
-const logPath = path.resolve(path.dirname(__dirname), 'log');
+const logPath = path.resolve(path.dirname(__dirname), "log");
 
 const logStyle = {
     "success": "green",
     "warn": "red",
     "default": "green"
-}
+};
 
 /**
  *
@@ -31,7 +31,7 @@ function writeLog(filename, data) {
         else {
             fs.writeFile(fileFullPath, data);
         }
-    })
+    });
 }
 
 /**
@@ -41,7 +41,7 @@ function writeLog(filename, data) {
 function output(type) {
     let style = logStyle[type] || logStyle.default;
 
-    if (typeof chalk[style] !== 'function') {
+    if (typeof chalk[style] !== "function") {
         style = "green";
     }
 
@@ -49,9 +49,9 @@ function output(type) {
         return chalk[style](JSON.stringify(item));
     }));
 
-    writeLog(`${moment().format("L").replace(/\//ig, '-')}.${type}.log`, Array.prototype.slice.call(arguments, 1).map(item => {
-            return JSON.stringify(item);
-        }).join("\t") + "\n");
+    writeLog(`${moment().format("L").replace(/\//ig, "-")}.${type}.log`, Array.prototype.slice.call(arguments, 1).map(item => {
+        return JSON.stringify(item);
+    }).join("\t") + "\n");
 }
 
 /**
@@ -68,4 +68,4 @@ function warnLog() {
     output.apply(null, ["warn", moment().format()].concat(Array.prototype.slice.call(arguments, 0)));
 }
 
-module.exports = {output, successLog, warnLog}
+module.exports = {output, successLog, warnLog};

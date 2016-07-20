@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 import request from "request";
 
@@ -14,19 +14,19 @@ import cheerio from "cheerio";
 
 import {exec} from "shelljs";
 
-import {successLog, warnLog} from "./log"
+import {successLog, warnLog} from "./log";
 
 /**
  * 数据存储路径
  * @type {string}
  */
-const dataPath = path.resolve(path.dirname(__dirname), 'data');
+const dataPath = path.resolve(path.dirname(__dirname), "data");
 
 /**
  * 日志存储路径
  * @type {string}
  */
-const logPath = path.resolve(path.dirname(__dirname), 'log');
+const logPath = path.resolve(path.dirname(__dirname), "log");
 
 /**
  *
@@ -43,7 +43,7 @@ function crawleWebpage(url) {
                 resolve(body);
             }
         });
-    })
+    });
 }
 
 /**
@@ -68,7 +68,7 @@ function saveToLocal(filepath, filedata) {
     return new Promise((resolve, reject) => {
         fs.writeFile(filepath, filedata, err => {
             if (err) {
-                reject(err)
+                reject(err);
             }
             else {
                 resolve(filepath);
@@ -83,7 +83,7 @@ function saveToLocal(filepath, filedata) {
  * @returns {*}
  */
 function generateLocalPath(key) {
-    return path.join(dataPath, key + "_" + new Date().getFullYear() + '.html');
+    return path.join(dataPath, key + "_" + new Date().getFullYear() + ".html");
 }
 
 /**
@@ -91,7 +91,7 @@ function generateLocalPath(key) {
  * @returns {*}
  */
 function generateLogPath() {
-    return path.join(logPath, new Date().getFullYear() + '.json');
+    return path.join(logPath, new Date().getFullYear() + ".json");
 }
 
 
@@ -141,8 +141,8 @@ export default class SpiderPromise extends EventEmitter {
                 return saveToLocal(generateLogPath(), JSON.stringify(res));
             })
             .then(filepath => {
-                successLog("task run complete!")
-                exec('cat ' + filepath);
+                successLog("task run complete!");
+                exec("cat " + filepath);
             })
             .catch(err => {
                 warnLog("task run fail!");

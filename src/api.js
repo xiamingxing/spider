@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 import request from "request";
 
@@ -6,7 +6,7 @@ import Promise from "promise";
 
 import EventEmitter from "events";
 
-import {successLog, warnLog} from "./log"
+import {successLog, warnLog} from "./log";
 
 /**
  * 超时时间
@@ -24,7 +24,7 @@ function timerDown(timeout) {
         setTimeout(function () {
             reject("已超时");
         }, timeout);
-    })
+    });
 }
 
 /**
@@ -70,7 +70,7 @@ export default class ApiPromise extends EventEmitter {
      * @returns {*}
      */
     fetchUserid() {
-        return fecthData(this.conf['getUserInfo'])
+        return fecthData(this.conf["getUserInfo"])
             .then(res => {
                 return res["_id"];
             });
@@ -82,7 +82,7 @@ export default class ApiPromise extends EventEmitter {
      * @returns {*}
      */
     fetchPublicPost(id) {
-        return fecthData(this.conf['getPublicPostByUserid'].replace("{userid}", id));
+        return fecthData(this.conf["getPublicPostByUserid"].replace("{userid}", id));
     }
 
     /**
@@ -91,7 +91,7 @@ export default class ApiPromise extends EventEmitter {
      * @returns {*}
      */
     fetchStudyPost(id) {
-        return fecthData(this.conf['getStudyPostByUserid'].replace("{userid}", id));
+        return fecthData(this.conf["getStudyPostByUserid"].replace("{userid}", id));
     }
 
     /**
@@ -106,11 +106,11 @@ export default class ApiPromise extends EventEmitter {
             .all([
                 self.fetchUserid()
                     .then(id => {
-                        return self.fetchPublicPost(id)
+                        return self.fetchPublicPost(id);
                     }),
                 self.fetchUserid()
                     .then(id => {
-                        return self.fetchStudyPost(id)
+                        return self.fetchStudyPost(id);
                     })
             ])
             .then(res => {
