@@ -21,7 +21,7 @@ const timeout = 3000;
  */
 function timerDown(timeout) {
     return new Promise((resolve, reject) => {
-        setTimeout(function () {
+        setTimeout(() => {
             reject("已超时");
         }, timeout);
     });
@@ -105,13 +105,9 @@ export default class ApiPromise extends EventEmitter {
         return Promise
             .all([
                 self.fetchUserid()
-                    .then(id => {
-                        return self.fetchPublicPost(id);
-                    }),
+                    .then(this.fetchUserid.bind(this)),
                 self.fetchUserid()
-                    .then(id => {
-                        return self.fetchStudyPost(id);
-                    })
+                    .then(this.fetchStudyPost.bind(this))
             ])
             .then(res => {
                 successLog("fetchPublicPost:", res[0]);

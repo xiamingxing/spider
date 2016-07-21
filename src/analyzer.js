@@ -171,7 +171,7 @@ export default class Analyzer extends EventEmitter {
      *
      * @returns {*}
      */
-    async start() {
+    async runTasks() {
         return readDir(path.resolve(this.conf["logPath"]))
             .then(genAllFilesAnalysisFunc(await getSqliteDb(this.conf), this.conf["tableName"]))
             .then(res => {

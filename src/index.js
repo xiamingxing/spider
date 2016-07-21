@@ -13,7 +13,7 @@ import apiConfig from "../conf/api";
 function start(){
     new SpiderPromise(config).runTasks();
     new ApiPromise(apiConfig).runTasks();
-    new Analyzer().start();
+    new Analyzer().runTasks();
 }
 
 start();
